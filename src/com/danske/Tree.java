@@ -93,12 +93,12 @@ public class Tree {
         boolean right = printPath( rightNode, sum - node.getValue() );
 
         if (left || right) {
-
             values.add( node );
         }
 
         return left || right;
     }
+
 // get  root from array
     public Node getRoot() {
         boolean isodd = array[0][0] % 2 == 1 ? true : false;
@@ -115,8 +115,8 @@ public class Tree {
             }
             System.out.println( "" );
         }
-
     }
+
 //print path
     void printList() {
         System.out.println(" this max sum is from:");
@@ -124,10 +124,7 @@ public class Tree {
         for (int i = valueSize - 1; i >= 0; i--) {
             Node node = values.get( i );
             System.out.println( "[" + node.getRow() + "," + node.getCol() + "]  --> " + node.getValue() );
-
         }
         System.out.println();
     }
-
-
 }

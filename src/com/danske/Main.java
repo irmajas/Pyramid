@@ -29,12 +29,12 @@ public class Main {
                 {223, 626, 034, 683, 839, 052, 627, 310, 713, 999, 629, 817, 410, 121, 0},
                 {924, 622, 911, 233, 325, 139, 721, 218, 253, 223, 107, 233, 230, 124, 233}
         };
-
+// find max sum for exemple
         Tree first = new Tree( triangle );
         first.printArray();
         System.out.println( "Max sum is >> " + first.findMax() );
         first.printList();
-
+//find max sum for given task
         Tree second = new Tree( triangle2 );
         second.printArray();
         System.out.println( "Max sum is >> " + second.findMax() );
