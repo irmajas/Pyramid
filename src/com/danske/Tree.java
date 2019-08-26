@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Tree {
-    int[][] array;
-    List<Node> values = new ArrayList<>();
 
+    int[][] array;
+    private List<Node> values = new ArrayList<>();
 
     public Tree(int[][] array) {
         this.array = array;
@@ -14,29 +14,33 @@ public class Tree {
 
     //get max sum and print path
     public void findMax() {
-        Node root = getRoot();
-
-        int pathLength = findMaxPath();
-        if (!(pathLength==array.length)){
-            System.out.println("Max sum can't count, becouse way to the bottom of Pyramid don't exist");
-
+        if (array==null){
+            System.out.println("Pyramide do not exist");
         }
         else {
-            long maxsum = findMaxUtil( root, pathLength );
-            printPath( root, maxsum );
-            System.out.println( "Max sum is >> " + maxsum );
-            printList();
+            Node root = getRoot();
+
+            int pathLength = findMaxPath();
+            if (!(pathLength == array.length)) {
+                System.out.println( "Max sum can't count, becouse way to the bottom of Pyramid don't exist" );
+
+            } else {
+                long maxsum = findMaxUtil( root, pathLength );
+                getPath( root, maxsum );
+                System.out.println( "Max sum is = " + maxsum );
+                printList();
+            }
         }
     }
-
-    public int findMaxPath() {
+//find parh in the tree with mac lentgh
+    private int findMaxPath() {
         Node root = getRoot();
         int maxpath = pathdeep( root );
         return maxpath;
     }
 
     // find max sum from some node
-    public long findMaxUtil(Node node, int length) {
+    private long findMaxUtil(Node node, int length) {
         long sumcenter = 0;
         long sumright = 0;
 
@@ -98,8 +102,8 @@ public class Tree {
             }
         }
     }
-
-    public int pathdeep(Node node) {
+//find max path lenght form given node
+    private int pathdeep(Node node) {
 
         if (node == null) {
             return 0;
@@ -113,7 +117,7 @@ public class Tree {
     }
 
     // print path by sum
-    public boolean printPath(Node node, long sum) {
+    private boolean getPath(Node node, long sum) {
 
         if (sum == 0) {
             return true;
@@ -124,36 +128,42 @@ public class Tree {
         }
         Node centerNode = getCenter( node );
         Node rightNode = getRight( node );
-        boolean left = printPath( centerNode, sum - node.getValue() );
-        boolean right = printPath( rightNode, sum - node.getValue() );
+        boolean center = getPath( centerNode, sum - node.getValue() );
+        boolean right = getPath( rightNode, sum - node.getValue() );
 
-        if (left || right) {
+        if (center || right) {
             values.add( node );
         }
 
-        return left || right;
+        return center || right;
     }
 
     // get  root from array
-    public Node getRoot() {
+    private Node getRoot() {
+
         boolean isodd = array[0][0] % 2 == 1 ? true : false;
         return new Node( 0, 0, array[0][0], isodd );
     }
 
     //print Pyramid
     void printArray() {
-        int size = array.length;
-        System.out.println(" Pyramid is :");
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j <= i; j++) {
-                System.out.print( array[i][j] + " " );
+        if (array==null){
+            System.out.println("Nothing to print");
+        }
+        else {
+            int size = array.length;
+            System.out.println( " Pyramid is :" );
+            for (int i = 0; i < size; i++) {
+                for (int j = 0; j <= i; j++) {
+                    System.out.print( array[i][j] + " " );
+                }
+                System.out.println( "" );
             }
-            System.out.println( "" );
         }
     }
 
     //print path
-    void printList() {
+    private void printList() {
         System.out.println( " this max sum is from:" );
         int valueSize = values.size();
         for (int i = valueSize - 1; i >= 0; i--) {

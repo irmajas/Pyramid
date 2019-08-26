@@ -12,6 +12,7 @@ public class Main {
                 {4, 5, 2, 3}
 
         };
+
         int[][] triangle2 = new int[][]{
                 {215, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {192, 124, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -75,7 +76,7 @@ public class Main {
         Tree test = new Tree( triangleTest );
         test.printArray();
         test.findMax();
-//testing if max sum is not on the bottom
+//testing if max sum is not on the path to  bottom
         Tree test2 = new Tree( triangleTest2 );
         test2.printArray();
         test2.findMax();
