@@ -44,4 +44,14 @@ public class Node {
     public void setOdd(boolean odd) {
         this.odd = odd;
     }
+
+    @Override
+    public String toString() {
+        return "Node{" +
+                "col=" + col +
+                ", row=" + row +
+                ", value=" + value +
+                ", odd=" + odd +
+                '}';
+    }
 }
